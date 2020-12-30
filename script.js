@@ -32,7 +32,7 @@ function getTotalValueItens() {
     total += parseFloat(element.innerText.split('$')[1]);
   });
   const totalPrice = document.querySelector('.total-price');
-  totalPrice.innerHTML = total;
+  totalPrice.innerHTML = 'Valor total: R$ ' + total.toFixed(2).replace(".", ",");
 }
 function cartItemClickListener(event) {
   const cartItems = document.querySelector('.cart__items');
@@ -105,6 +105,7 @@ function emptyCartItems() {
     const cartItems = document.querySelector('.cart__items');
     cartItems.innerHTML = '';
     getTotalValueItens();
+    saveCartItemsLocalStorage();
   });
 }
 window.onload = async () => {
