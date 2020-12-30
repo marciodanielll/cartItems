@@ -52,10 +52,11 @@ function getItemsCarsLocalStorage() {
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
-function createCartItemElement({ sku, name, salePrice }) {
+function createCartItemElement({name, salePrice }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
+  li.innerText = `Produto: ${name} 
+   Preço: R$ ${salePrice}`;
   li.addEventListener('click', cartItemClickListener);
   return li;
 }

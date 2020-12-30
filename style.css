@@ -2,10 +2,25 @@ body{
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin:0%;
 }
+.loading{
+  color: #00A8DD;
+  font-size: 50px;
+  text-align: center; 
+
+}
 .banner{
+  margin:0%;
   background-color: #141D37;
   height: 150px;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner h1{
+  color: #ffb200;
+  font-size: 80px;
+
 }
 .top-bar {
   align-items: center;
@@ -40,7 +55,7 @@ body{
 }
 
 .item {
-  border: 2px solid rgb(93, 93, 150);
+  border: 2px solid #00A8DD;
   border-radius: 5px;
   box-sizing: border-box;
   display: flex;
@@ -65,8 +80,9 @@ body{
 }
 
 .item .item__add {
-  background-color:#141D37;
-  color: aliceblue;
+  background-color: #00A8DD;
+  font-size: 18px;
+  color: white;
   border: 0;
   cursor: pointer;
   margin: 0;
@@ -74,13 +90,20 @@ body{
 }
 
 .cart {
-  display: flex;
+  border: 2px solid #00A8DD;
+  margin-top: 6px;
+  display: flex;  
   flex-basis: 30%;
   flex-flow: column wrap;
+  border-radius: 5px;
 }
-
 .cart .cart__title {
+  background-color: #141D37;
+  color: #ffb200;  
   flex-basis: 1;
   font-size: 16pt;
   text-align: center;
 }
+.cart .total-price{
+  text-align: center; 
+ }
