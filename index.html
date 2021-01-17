@@ -11,16 +11,22 @@
 
   <body>
     <header class="banner">
-      <h1>Shopping Cidade Jardim</h1>
+      <div class="search">
+        <input type="text" class="search___input">
+        <button type="submit" class="search___items">Pesquisar</button>
+      </div>      
+      <div class="logo">
+        <h1> pantanon</h1>
+        <img src="./img/pngegg.png"  height="160" border="0">
+      </div>      
     </header>
-    <div class="loading">Loading...</div>
     <section class="container">
       <section class="items"></section>
       <section class="cart">
         <span class="cart__title">Carrinho de compras</span>
-        <button class="empty-cart">Esvaziar carrinho</button>
+        <button class="empty__cart">Esvaziar carrinho</button>
         <ol class="cart__items"></ol>
-        <div class="total-price"></div>
+        <div class="total__price"></div>
 
       </section>
     </section>

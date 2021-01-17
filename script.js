@@ -25,19 +25,19 @@ function saveCartItemsLocalStorage() {
   const cartItems = document.querySelector('.cart__items');
   localStorage.setItem('cartItems', cartItems.innerHTML);
 }
-function getTotalValueItens() {
+function sumValuesCartItems() {
   const cartItem = document.querySelectorAll('.cart__item');
   let total = 0;
   cartItem.forEach((element) => {
     total += parseFloat(element.innerText.split('$')[1]);
   });
-  const totalPrice = document.querySelector('.total-price');
+  const totalPrice = document.querySelector('.total__price');  
   totalPrice.innerHTML = 'Valor total: R$ ' + total.toFixed(2).replace(".", ",");
 }
 function cartItemClickListener(event) {
   const cartItems = document.querySelector('.cart__items');
   cartItems.removeChild(event.target);
-  getTotalValueItens();
+  sumValuesCartItems();
   saveCartItemsLocalStorage();
 }
 function getItemsCarsLocalStorage() {
@@ -60,16 +60,27 @@ function createCartItemElement({name, salePrice }) {
   li.addEventListener('click', cartItemClickListener);
   return li;
 }
-function createItensList() {
-  fetch('https://api.mercadolibre.com/sites/MLB/search?q=$computador')
+function creatEventSearch(){
+    const searchItems = document.querySelector('.search___items');
+  searchItems.addEventListener('click', searchNewItemsList)
+}
+function searchNewItemsList(){
+  const searchItems = document.querySelector('.search___input').value;
+  if(!!searchItems){
+    createItemsList(searchItems);
+  }
+}
+function createItemsList(item = 'pantanal') {
+  const items = document.querySelector('.items');
+  items.innerHTML = '';
+  fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${item}`)
     .then(response => response.json())
-    .then((data) => {
-      document.querySelector('.loading').remove();
-      data.results.forEach((element) => {
+    .then((data) => {       
+      data.results.forEach((element) => {      
         const objItens = {
           sku: element.id,
           name: element.title,
-          image: element.thumbnail,
+          image: element.thumbnail.replace('I','O'),
         };
         const items = document.querySelector('.items');
         items.appendChild(createProductItemElement(objItens));
@@ -91,28 +102,29 @@ function moveItensCart(event) {
         };
         const cartItems = document.querySelector('.cart__items');
         cartItems.appendChild(createCartItemElement(itemObjCartItems));
-        getTotalValueItens();
+        sumValuesCartItems();
         saveCartItemsLocalStorage();
       });
   }
 }
-function addItensCart() {
+function addItemsCarts() {
   const items = document.querySelector('.items');
   items.addEventListener('click', moveItensCart);
 }
 function emptyCartItems() {
-  const emptyCart = document.querySelector('.empty-cart');
+  const emptyCart = document.querySelector('.empty__cart');
   emptyCart.addEventListener('click', () => {
     const cartItems = document.querySelector('.cart__items');
     cartItems.innerHTML = '';
-    getTotalValueItens();
+    sumValuesCartItems();
     saveCartItemsLocalStorage();
   });
 }
 window.onload = async () => {
-  createItensList();
-  addItensCart();
+  createItemsList();
+  addItemsCarts();
   getItemsCarsLocalStorage();
   emptyCartItems();
-  getTotalValueItens();
+  sumValuesCartItems();
+  creatEventSearch();
 };
