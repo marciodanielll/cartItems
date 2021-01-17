@@ -70,7 +70,7 @@ function searchNewItemsList(){
     createItemsList(searchItems);
   }
 }
-function createItemsList(item = 'pantanal') {
+function createItemsList(item = 'Almir Sater') {
   const items = document.querySelector('.items');
   items.innerHTML = '';
   fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${item}`)
